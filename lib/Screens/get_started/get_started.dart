@@ -88,6 +88,7 @@ class _GetStartedState extends State<GetStarted> {
                     onPressed: () => {},
                     icon: FontAwesomeIcons.facebook,
                     textColor: Colors.white,
+                    disabeld: false,
                   ),
                   Center(
                     child: Text(
@@ -120,10 +121,16 @@ class _GetStartedState extends State<GetStarted> {
 
 void opensheet(context) async {
   showModalBottomSheet<dynamic>(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(25.0))),
       context: (context),
       isDismissible: false,
+      isScrollControlled: true,
       builder: (context) {
-        return Page1();
+        return Padding(
+          padding: MediaQuery.of(context).viewInsets,
+          child: Page1(),
+        );
       });
 }
 
@@ -153,7 +160,7 @@ class _Page1State extends State<Page1> {
   Widget page1() {
     Color boxColor = Colors.black26;
     return Container(
-      height: 350,
+      height: 300,
       decoration: BoxDecoration(
           borderRadius: new BorderRadius.only(
               topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0))),
@@ -239,261 +246,321 @@ class _Page1State extends State<Page1> {
 
   Widget page2() {
     return Container(
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0))),
       height: 500,
-      width: double.maxFinite,
-      child: (Column(
+      child: Column(
         children: [
           Container(
-            height: 50,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10.0),
+                    topRight: Radius.circular(10.0))),
+            width: double.maxFinite,
+            child: (Column(
               children: [
                 Container(
-                  width: 60,
-                  child: FlatButton(
-                      onPressed: () => {
-                            setState(() {
-                              currentview = 0;
-                            })
-                          },
-                      child: Icon(Icons.arrow_back_ios_rounded)),
-                ),
-                Text(
-                  "Create Account",
-                  style: TextStyle(
-                      color: brown, fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                Container(
-                  width: 60,
-                  child: FlatButton(
-                      onPressed: () => {Navigator.pop(context)},
-                      child: Icon(Icons.cancel)),
-                )
-              ],
-            ),
-          ),
-          Divider(
-            height: 5,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                  child: Container(
-                    height: 80,
-                    decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.05),
-                      border: Border.all(
-                          width: 1, color: Colors.black.withOpacity(0.2)),
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 8.0, right: 8.0, top: 4),
-                          child: Text(
-                            'Enter email *',
-                            style:
-                                TextStyle(color: Colors.black87, fontSize: 10),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                          child: TextFormField(
-                            onTap: () {
-                              setState(() {});
-                            },
-                            onFieldSubmitted: (value) => {
-                              setState(() {
-                                currentview = 2;
-                              })
-                            },
-                            textInputAction: TextInputAction.next,
-                            onChanged: (value) {
-                              setState(() {});
-                            },
-                            decoration: InputDecoration(
-                                hintText: 'Enter email here',
-                                border: InputBorder.none),
-                          ),
-                        ),
-                      ],
-                    ),
+                  height: 50,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: 60,
+                        child: FlatButton(
+                            onPressed: () => {
+                                  setState(() {
+                                    currentview = 0;
+                                  })
+                                },
+                            child: Icon(Icons.arrow_back_ios_rounded)),
+                      ),
+                      Text(
+                        "Create Account",
+                        style: TextStyle(
+                            color: brown,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Container(
+                        width: 60,
+                        child: FlatButton(
+                            onPressed: () => {Navigator.pop(context)},
+                            child: Icon(Icons.cancel)),
+                      )
+                    ],
                   ),
+                ),
+                Divider(
+                  height: 5,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 80,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            height: 70,
-                            decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.05),
-                              border: Border.all(
-                                  width: 1,
-                                  color: Colors.black.withOpacity(0.1)),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 8.0, right: 8.0, top: 4),
-                                  child: Text(
-                                    'First Name *',
-                                    style: TextStyle(
-                                        color: Colors.black87, fontSize: 10),
-                                  ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                        child: Container(
+                          height: 80,
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.05),
+                            border: Border.all(
+                                width: 1, color: Colors.black.withOpacity(0.2)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 8.0, right: 8.0, top: 4),
+                                child: Text(
+                                  'Enter email *',
+                                  style: TextStyle(
+                                      color: Colors.black87, fontSize: 10),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 8.0, right: 8.0),
-                                  child: TextFormField(
-                                    onTap: () {
-                                      setState(() {});
-                                    },
-                                    onFieldSubmitted: (value) => {
-                                      setState(() {
-                                        currentview = 2;
-                                      })
-                                    },
-                                    textInputAction: TextInputAction.next,
-                                    onChanged: (value) {
-                                      setState(() {});
-                                    },
-                                    decoration: InputDecoration(
-                                        hintText: 'First name here',
-                                        border: InputBorder.none),
-                                  ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 8.0, right: 8.0),
+                                child: TextFormField(
+                                  onTap: () {
+                                    setState(() {});
+                                  },
+                                  onFieldSubmitted: (value) => {
+                                    setState(() {
+                                      currentview = 2;
+                                    })
+                                  },
+                                  textInputAction: TextInputAction.next,
+                                  onChanged: (value) {
+                                    setState(() {});
+                                  },
+                                  decoration: InputDecoration(
+                                      hintText: 'Enter email here',
+                                      border: InputBorder.none),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Expanded(
-                          child: Container(
-                            height: 70,
-                            decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.05),
-                              border: Border.all(
-                                  width: 1,
-                                  color: Colors.black.withOpacity(0.1)),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 8.0, right: 8.0, top: 4),
-                                  child: Text(
-                                    'Last name  *',
-                                    style: TextStyle(
-                                        color: Colors.black87, fontSize: 10),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 80,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  height: 70,
+                                  decoration: BoxDecoration(
+                                    color: Colors.black.withOpacity(0.05),
+                                    border: Border.all(
+                                        width: 1,
+                                        color: Colors.black.withOpacity(0.1)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10.0)),
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 8.0, right: 8.0, top: 4),
+                                        child: Text(
+                                          'First Name *',
+                                          style: TextStyle(
+                                              color: Colors.black87,
+                                              fontSize: 10),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 8.0, right: 8.0),
+                                        child: TextFormField(
+                                          onTap: () {
+                                            setState(() {});
+                                          },
+                                          onFieldSubmitted: (value) => {
+                                            setState(() {
+                                              currentview = 2;
+                                            })
+                                          },
+                                          textInputAction: TextInputAction.next,
+                                          onChanged: (value) {
+                                            setState(() {});
+                                          },
+                                          decoration: InputDecoration(
+                                              hintText: 'First name here',
+                                              border: InputBorder.none),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 8.0, right: 8.0),
-                                  child: TextFormField(
-                                    onTap: () {
-                                      setState(() {});
-                                    },
-                                    onFieldSubmitted: (value) => {
-                                      setState(() {
-                                        currentview = 2;
-                                      })
-                                    },
-                                    textInputAction: TextInputAction.next,
-                                    onChanged: (value) {
-                                      setState(() {});
-                                    },
-                                    decoration: InputDecoration(
-                                        hintText: 'Last name  here',
-                                        border: InputBorder.none),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Expanded(
+                                child: Container(
+                                  height: 70,
+                                  decoration: BoxDecoration(
+                                    color: Colors.black.withOpacity(0.05),
+                                    border: Border.all(
+                                        width: 1,
+                                        color: Colors.black.withOpacity(0.1)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10.0)),
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 8.0, right: 8.0, top: 4),
+                                        child: Text(
+                                          'Last name  *',
+                                          style: TextStyle(
+                                              color: Colors.black87,
+                                              fontSize: 10),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 8.0, right: 8.0),
+                                        child: TextFormField(
+                                          onTap: () {
+                                            setState(() {});
+                                          },
+                                          onFieldSubmitted: (value) => {
+                                            setState(() {
+                                              currentview = 2;
+                                            })
+                                          },
+                                          textInputAction: TextInputAction.next,
+                                          onChanged: (value) {
+                                            setState(() {});
+                                          },
+                                          decoration: InputDecoration(
+                                              hintText: 'Last name  here',
+                                              border: InputBorder.none),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                        child: Container(
+                          height: 70,
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.05),
+                            border: Border.all(
+                                width: 1, color: Colors.black.withOpacity(0.1)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 8.0, right: 8.0, top: 4),
+                                child: Text(
+                                  'Password *',
+                                  style: TextStyle(
+                                      color: Colors.black87, fontSize: 10),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 8.0, right: 8.0),
+                                child: TextFormField(
+                                  onTap: () {
+                                    setState(() {});
+                                  },
+                                  obscureText: true,
+                                  textInputAction: TextInputAction.next,
+                                  onChanged: (value) {
+                                    setState(() {});
+                                  },
+                                  decoration: InputDecoration(
+                                      hintText: '**********',
+                                      border: InputBorder.none),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Text("By Continueing you accept the "),
+                                  GestureDetector(
+                                      child: Text("Terms of user",
+                                          style: TextStyle(
+                                              decoration:
+                                                  TextDecoration.underline,
+                                              color: Colors.black)),
+                                      onTap: () {
+                                        // do what you need to do when "Click here" gets clicked
+                                      }),
+                                  Text(' and')
+                                ],
+                              ),
+                              GestureDetector(
+                                  child: Text("Privact Policy",
+                                      style: TextStyle(
+                                          decoration: TextDecoration.underline,
+                                          color: Colors.black)),
+                                  onTap: () {
+                                    // do what you need to do when "Click here" gets clicked
+                                  }),
+                            ],
+                          ))
+                    ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                  child: Container(
-                    height: 70,
-                    decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.05),
-                      border: Border.all(
-                          width: 1, color: Colors.black.withOpacity(0.1)),
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 8.0, right: 8.0, top: 4),
-                          child: Text(
-                            'Password *',
-                            style:
-                                TextStyle(color: Colors.black87, fontSize: 10),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                          child: TextFormField(
-                            onTap: () {
-                              setState(() {});
-                            },
-                            obscureText: true,
-                            textInputAction: TextInputAction.next,
-                            onChanged: (value) {
-                              setState(() {});
-                            },
-                            decoration: InputDecoration(
-                                hintText: '**********',
-                                border: InputBorder.none),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                SizedBox(
+                  height: 10,
                 ),
-                Row(
-                  children: [
-                    Text("By Continueing you accept the "),
-                  ],
+                RoundedButton(
+                  onPressed: () {},
+                  title: "Create account",
+                  backgroundColor: yellow,
+                  textColor: Colors.white,
+                  icon: null,
+                  iconColor: Colors.white,
+                  disabeld: true,
                 )
               ],
-            ),
+            )),
           ),
         ],
-      )),
+      ),
     );
   }
 }

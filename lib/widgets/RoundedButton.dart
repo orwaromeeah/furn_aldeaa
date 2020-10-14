@@ -11,23 +11,26 @@ class RoundedButton extends StatelessWidget {
   final Function onPressed;
   Color textColor;
   Color iconColor;
+  bool disabeld;
+
   RoundedButton(
       {this.title,
       this.icon,
       this.backgroundColor,
       @required this.onPressed,
       this.textColor,
-      this.iconColor});
+      this.iconColor,
+      this.disabeld});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Material(
-        color: backgroundColor,
+        color: disabeld ? backgroundColor.withOpacity(0.5) : backgroundColor,
         borderRadius: BorderRadius.circular(20.0),
         child: (MaterialButton(
-          onPressed: onPressed,
+          onPressed: disabeld ? null : onPressed,
           textColor: Colors.white,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

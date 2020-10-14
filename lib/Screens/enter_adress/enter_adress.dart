@@ -5,9 +5,6 @@ import 'package:furn_aldeaa/widgets/CustomTextField.dart';
 import 'package:furn_aldeaa/widgets/RoundedButton.dart';
 import 'package:furn_aldeaa/widgets/searchField.dart';
 
-
-
-
 class EnterAddress extends StatefulWidget {
   static const String id = 'enterAddress';
   @override
@@ -135,6 +132,7 @@ class _EnterAdressState extends State<EnterAddress> {
             textColor: Colors.white,
             icon: null,
             iconColor: Colors.white,
+            disabeld: false,
           )
         ],
       ),
