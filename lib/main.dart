@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:furn_aldeaa/get_started/get_started.dart';
+import 'package:furn_aldeaa/Screens/enter_adress/enter_adress.dart';
+import 'package:furn_aldeaa/Screens/get_started/get_started.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,9 +16,10 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        initialRoute: getStarted.id,
+        initialRoute: GetStarted.id,
         routes: {
-          getStarted.id: (context) => getStarted(),
+          GetStarted.id: (context) => GetStarted(),
+          EnterAddress.id: (context) => EnterAddress(),
         });
   }
 }
